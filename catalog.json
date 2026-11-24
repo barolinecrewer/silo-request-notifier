@@ -1,0 +1,103 @@
+{
+  "plugins": [
+    {
+      "manifest": {
+        "plugin_id": "milopolis.request-notifier",
+        "version": "0.1.0",
+        "silo_api_version": "v1",
+        "supported_platforms": [
+          {
+            "os": "linux",
+            "arch": "amd64"
+          },
+          {
+            "os": "linux",
+            "arch": "arm64"
+          }
+        ],
+        "capabilities": [
+          {
+            "type": "http_routes.v1",
+            "id": "request-webhook",
+            "display_name": "Request Notifier",
+            "description": "Sends a push through ntfy when a Silo media request is submitted."
+          }
+        ],
+        "global_config_schema": [
+          {
+            "key": "delivery",
+            "title": "Request Notifier",
+            "json_schema": "{\"type\":\"object\",\"properties\":{\"server_url\":{\"type\":\"string\"},\"topic\":{\"type\":\"string\",\"pattern\":\"^[A-Za-z0-9_-]{1,64}$\"},\"ntfy_token\":{\"type\":\"string\"},\"webhook_token\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"}},\"required\":[\"server_url\",\"topic\",\"ntfy_token\",\"webhook_token\"],\"additionalProperties\":false}",
+            "admin_form": {
+              "fields": [
+                {
+                  "key": "server_url",
+                  "label": "ntfy server URL",
+                  "control": 1,
+                  "placeholder": "https://ntfy.example.com",
+                  "required": true
+                },
+                {
+                  "key": "topic",
+                  "label": "ntfy topic",
+                  "control": 1,
+                  "placeholder": "silo-requests",
+                  "required": true
+                },
+                {
+                  "key": "ntfy_token",
+                  "label": "ntfy publishing token",
+                  "control": 3,
+                  "required": true,
+                  "secret": true
+                },
+                {
+                  "key": "webhook_token",
+                  "label": "Webhook token",
+                  "description": "Generate with openssl rand -hex 32. Use the same value in the server channel webhook URL.",
+                  "control": 3,
+                  "required": true,
+                  "secret": true
+                }
+              ]
+            }
+          }
+        ],
+        "http_routes": [
+          {
+            "id": "requests",
+            "method": "POST",
+            "path": "/requests",
+            "access": "public"
+          }
+        ],
+        "category": "Notifications",
+        "presentation": {
+          "display_name": "Silo Request Notifier",
+          "summary": "Get an ntfy push when someone submits a movie or series request.",
+          "description_markdown": "Sends a push for each new request, including requests that still need approval.",
+          "setup_markdown": "Configure the plugin and add a Generic server notification channel. See the [setup guide](https://github.com/barolinecrewer/silo-request-notifier#configure-alerts).",
+          "homepage_url": "https://github.com/barolinecrewer/silo-request-notifier",
+          "source_url": "https://github.com/barolinecrewer/silo-request-notifier",
+          "support_url": "https://github.com/barolinecrewer/silo-request-notifier/issues",
+          "changelog_url": "https://github.com/barolinecrewer/silo-request-notifier/releases",
+          "publisher_name": "Caroline Brewer",
+          "publisher_url": "https://github.com/barolinecrewer",
+          "license_spdx": "NOASSERTION"
+        }
+      },
+      "repo_url": "https://github.com/barolinecrewer/silo-request-notifier",
+      "tag": "v0.1.0",
+      "binaries": {
+        "linux/amd64": {
+          "url": "https://github.com/barolinecrewer/silo-request-notifier/releases/download/v0.1.0/silo-request-notifier-linux-amd64",
+          "checksum": "34daa2ff3ade23351be68e87bb976e64ad9d0d125855e74bc4287b51d1ae5e49"
+        },
+        "linux/arm64": {
+          "url": "https://github.com/barolinecrewer/silo-request-notifier/releases/download/v0.1.0/silo-request-notifier-linux-arm64",
+          "checksum": "d745da4842dae6b14ec6f8cf0df52efc8a86b087be572bdd37e2a3e0a715ef27"
+        }
+      }
+    }
+  ]
+}
