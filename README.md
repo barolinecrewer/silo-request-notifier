@@ -22,7 +22,7 @@ Find **Silo Request Notifier** in the plugin catalog and install it. Builds are 
    https://SILO_HOST/api/v2/plugin-content/plugins/INSTALLATION_ID/requests?token=WEBHOOK_TOKEN
    ```
 
-   The numeric installation ID is the `id` for `milopolis.request-notifier` in Silo's authenticated `GET /api/v2/admin/plugins/installations` response.
+   In Silo's authenticated `GET /api/v2/admin/plugins/installations` response, find the entry whose `presentation.display_name` is **Silo Request Notifier** and use its `id`.
 4. Enable **Request submitted** for this channel and turn its other event switches off. Run the channel's **Test** action. The ntfy app should show **Silo request notifier test**.
 
 Silo's plugin proxy filters webhook signature headers, so the webhook URL carries the credential. Keep the URL private and redact its query string in access logs. If the token is exposed, rotate it in the plugin settings and channel URL.
