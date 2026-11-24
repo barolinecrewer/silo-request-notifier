@@ -4,7 +4,7 @@ Send an ntfy push when someone submits a movie or series request in Silo. The al
 
 ## Install from Silo
 
-Open **Admin → Integrations → Plugins → Repositories → Add repository**. Enter **Silo Request Notifier** as the name and use this catalog URL.
+Open **Admin → Integrations → Plugins → Catalog → Repositories → Add repository**. Enter **Silo Request Notifier** as the name and use this catalog URL.
 
 ```text
 https://raw.githubusercontent.com/barolinecrewer/silo-request-notifier/main/catalog.json
